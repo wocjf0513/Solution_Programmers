@@ -1,26 +1,43 @@
 import java.util.*;
-
 class Solution {
-    public int[] solution(int[] array, int[][] commands) {
-        int x,y,z;
-        int len;
+    public static String solution(int[] numbers) {
+    	String anw="";
+        String[] str_num=new String[numbers.length];
         
-        len=commands.length;
-        int[] answer=new int[len];
+        for(int i=0; i<numbers.length; i++)
+        str_num[i]=Integer.toString(numbers[i]);
         
-        for(int k=0; k<len; k++){
-        ArrayList<Integer> list=new ArrayList<Integer>();
-            x=commands[k][0];
-            y=commands[k][1];
-            z=commands[k][2];
-            System.out.print(x+" "+y+" "+z+" ");
-            for(int i=x-1; i<y; i++){
-                list.add(array[i]);
-            }
-            Collections.sort(list);
-            
-            answer[k]=list.get(z-1);
-        }
-        return answer;
+        Arrays.sort(str_num);
+        
+        Arrays.sort(str_num, new Comparator<String>(){
+			@Override
+			public int compare(String o1, String o2) {
+				int o1o2=Integer.parseInt(o1+o2);
+				int o2o1=Integer.parseInt(o2+o1);
+				if(o1o2<o2o1) {
+					return 1;
+				}
+				else if(o1o2>o2o1) {
+					return -1;
+				}
+				else
+					return 1;
+	
+			}
+        });
+        
+        for(int i=0; i<numbers.length; i++)
+        	anw+=str_num[i];
+        
+        if(anw.charAt(0)=='0')
+        	return "0";
+       
+            return anw;
+        
+    }
+
+    public static void main(String args[]) {
+    	System.out.print(solution(new int[] {21,212})); //테스트 케이스 입력 
     }
 }
+    
