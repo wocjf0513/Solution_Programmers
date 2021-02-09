@@ -23,7 +23,7 @@ class Solution12 {
         	result[temp]=i;
         	temp++;
         }
-        Arrays.sort(result,);
+        Arrays.sort(result);
         System.out.print(Arrays.toString(result));
         
         return result;
